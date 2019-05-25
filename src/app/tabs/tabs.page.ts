@@ -6,7 +6,30 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  images: string[] = [
+    '../../assets/images/div-art.png',
+    '../../assets/images/ktc.png',
+    '../../assets/images/ninja.png',
+    '../../assets/images/nuwgp.png',
+    '../../assets/images/011.png',
+    '../../assets/images/edu.png',
+    '../../assets/images/aqua.png',
+  ];
 
-  constructor() {}
+  image: string;
+
+  constructor() {
+    this.image = this.images[0];
+    this.changeImage();
+  }
+
+  private changeImage() {
+    let index = 0;
+
+    setInterval(() => {
+      index = (++index) % this.images.length;
+      this.image = this.images[index];
+    }, 10000);
+  }
 
 }
