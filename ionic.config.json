@@ -1,5 +1,7 @@
 {
   "name": "holograma",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
