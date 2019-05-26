@@ -1,33 +1,27 @@
-ion-thumbnail {
-    width: 100%;
-    height: 80%;
-}
-
 .image {
     position: absolute;
-    width: 150px;
-    height: 150px;
-    margin:-60px 0 0 -60px;
+    margin: 0 0 0 0;
 }
+
 
 .image1 {
     top: 25%;
-    left: 50%;
+    left: 50vw - 20vw / 2;
 }
 
 .image2 {
-    top: 75%;
-    left: 50%;
+    bottom: 25%;
+    left: 50vw - 20vw / 2;
 }
 
 .image3 {
-    top: 50%;
+    top: 50vw - 20vw / 2;
     left: 25%;
 }
 
 .image4 {
-    top: 50%;
-    left: 75%;
+    top: 50vw - 20vw / 2;
+    right: 25%;
 }
 
 // ion-content{

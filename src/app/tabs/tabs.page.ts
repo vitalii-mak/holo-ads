@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -18,7 +19,21 @@ export class TabsPage {
 
   image: string;
 
-  constructor() {
+  width: number;
+  height: number;
+  minSize: number;
+
+  image1: Position;
+  image2: Position;
+  image3: Position;
+  image4: Position;
+
+  size: number;
+
+  constructor(
+    private platform: Platform,
+  ) {
+    this.initializeApp();
     this.image = this.images[0];
     this.changeImage();
   }
@@ -32,4 +47,23 @@ export class TabsPage {
     }, 10000);
   }
 
+  initializeApp() {
+    const width = this.platform.width();
+    const height = this.platform.height();
+    if (width <= height) {
+      this.minSize = width;
+    } else {
+      this.minSize = height;
+    }
+    this.size = this.minSize * 0.20;
+  }
+
+  calculatePosition() {
+    this.image1.left = this.height / 2 - this.size / 2 - this.size / 2;
+  }
+}
+
+interface Position {
+  left: number;
+  top: number;
 }
