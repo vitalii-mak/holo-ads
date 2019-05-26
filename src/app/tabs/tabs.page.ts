@@ -11,9 +11,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 export class TabsPage {
   images: string[] = [
     '../../assets/images/div-art.png',
-    '../../assets/images/ktc.png',
     '../../assets/images/ninja.png',
+    // '../../assets/images/ninja-black.png',
     '../../assets/images/nuwgp.png',
+    // '../../assets/images/nuwgp-black.png',
     '../../assets/images/011.png',
     '../../assets/images/edu.png',
     '../../assets/images/aqua.png',
@@ -59,7 +60,7 @@ export class TabsPage {
     this.camera.getPicture(options)
       .then((imageData) => {
         const base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.images.push(base64Image);
+        this.images.unshift(base64Image);
       });
   }
 
@@ -69,7 +70,7 @@ export class TabsPage {
     setInterval(() => {
       index = (++index) % this.images.length;
       this.image = this.images[index];
-    }, 10000);
+    }, 7000);
   }
 
   private initializeApp() {

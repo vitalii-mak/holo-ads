@@ -36,10 +36,13 @@
     [style.left.px]="image4?.left"
   ></ion-img>
 
-  <ion-button
+  <ion-fab (click)="takePhoto()">
+    <ion-fab-button size="small" color="light">+</ion-fab-button>
+  </ion-fab>
+  <!-- <ion-button
     color="primary"
     expand="full"
     fill="outline"
     (click)="takePhoto()"
-    >Add New Logo</ion-button>
+    >Add New Logo</ion-button> -->
 </ion-content>
