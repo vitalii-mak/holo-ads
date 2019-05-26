@@ -23,10 +23,10 @@ export class TabsPage {
   height: number;
   minSize: number;
 
-  image1: Position;
-  image2: Position;
-  image3: Position;
-  image4: Position;
+  image1: Position = {} as Position;
+  image2: Position = {} as Position;
+  image3: Position = {} as Position;
+  image4: Position = {} as Position;
 
   size: number;
 
@@ -34,6 +34,7 @@ export class TabsPage {
     private platform: Platform,
   ) {
     this.initializeApp();
+    this.calculatePosition();
     this.image = this.images[0];
     this.changeImage();
   }
@@ -50,6 +51,9 @@ export class TabsPage {
   initializeApp() {
     const width = this.platform.width();
     const height = this.platform.height();
+    this.height = height;
+    this.width = width;
+
     if (width <= height) {
       this.minSize = width;
     } else {
@@ -59,7 +63,17 @@ export class TabsPage {
   }
 
   calculatePosition() {
-    this.image1.left = this.height / 2 - this.size / 2 - this.size / 2;
+    this.image1.top = this.height / 2 - this.width / 4 - this.size / 2;
+    this.image1.left = this.width / 2 - this.size / 2;
+
+    this.image2.top = this.height / 2 + this.width / 4 - this.size / 2;
+    this.image2.left = this.width / 2 - this.size / 2;
+
+    this.image3.top = this.height / 2 - this.size / 2;
+    this.image3.left = this.width / 2 - this.width / 4 - this.size / 2;
+
+    this.image4.top = this.height / 2 - this.size / 2;
+    this.image4.left = this.width / 2 + this.width / 4 - this.size / 2;
   }
 }
 
