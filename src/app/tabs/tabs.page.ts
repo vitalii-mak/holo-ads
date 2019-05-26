@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-tabs',
@@ -34,6 +35,7 @@ export class TabsPage {
   constructor(
     private platform: Platform,
     private screenOrientation: ScreenOrientation,
+    private camera: Camera,
   ) {
     this.initializeApp();
     this.image = this.images[0];
@@ -42,6 +44,23 @@ export class TabsPage {
     if (this.platform.is('cordova')) {
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     }
+  }
+
+  takePhoto() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      targetHeight: 1024,
+      targetWidth: 1024,
+    };
+
+    this.camera.getPicture(options)
+      .then((imageData) => {
+        const base64Image = 'data:image/jpeg;base64,' + imageData;
+        this.images.push(base64Image);
+      });
   }
 
   private changeImage() {
@@ -53,7 +72,7 @@ export class TabsPage {
     }, 10000);
   }
 
-  initializeApp() {
+  private initializeApp() {
     const width = this.platform.width();
     const height = this.platform.height();
     this.height = height;

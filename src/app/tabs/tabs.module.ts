@@ -7,6 +7,7 @@ import { TabsPageRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
   declarations: [TabsPage],
   providers: [
     ScreenOrientation,
+    Camera,
   ]
 })
 export class TabsPageModule {}
