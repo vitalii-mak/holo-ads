@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-tabs',
@@ -32,11 +33,15 @@ export class TabsPage {
 
   constructor(
     private platform: Platform,
+    private screenOrientation: ScreenOrientation,
   ) {
     this.initializeApp();
-    this.calculatePosition();
     this.image = this.images[0];
     this.changeImage();
+
+    if (this.platform.is('cordova')) {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    }
   }
 
   private changeImage() {
@@ -59,21 +64,23 @@ export class TabsPage {
     } else {
       this.minSize = height;
     }
-    this.size = this.minSize * 0.20;
+    this.size = this.minSize * 0.30;
+
+    this.calculatePosition();
   }
 
   calculatePosition() {
-    this.image1.top = this.height / 2 - this.width / 4 - this.size / 2;
+    this.image1.top = this.height / 2 - this.width / 3 - this.size / 2;
     this.image1.left = this.width / 2 - this.size / 2;
 
-    this.image2.top = this.height / 2 + this.width / 4 - this.size / 2;
+    this.image2.top = this.height / 2 + this.width / 3 - this.size / 2;
     this.image2.left = this.width / 2 - this.size / 2;
 
     this.image3.top = this.height / 2 - this.size / 2;
-    this.image3.left = this.width / 2 - this.width / 4 - this.size / 2;
+    this.image3.left = this.width / 2 - this.width / 3 - this.size / 2;
 
     this.image4.top = this.height / 2 - this.size / 2;
-    this.image4.left = this.width / 2 + this.width / 4 - this.size / 2;
+    this.image4.left = this.width / 2 + this.width / 3 - this.size / 2;
   }
 }
 
